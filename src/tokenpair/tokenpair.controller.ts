@@ -88,20 +88,21 @@ export class TokenPairController {
 
   @Post('get_price_chart_data')
   async getPirceChartData(@Body() body: any) {
-      console.log('param: ', body);
       
-      const from = formatFull(new Date(body.from * 1000)) + ' ' + formatMonth(new Date(body.from * 1000));
-      const to = formatFull(new Date(body.to * 1000)) + ' ' + formatMonth(new Date(body.to * 1000));
+      // const from = formatFull(new Date(body.from * 1000)) + 'T' + formatMonth(new Date(body.from * 1000));
+      // const to = formatFull(new Date(body.to * 1000)) + 'T' + formatMonth(new Date(body.to * 1000));
+
+      const from = body.from;
+      const to = body.to;
 
       console.log(from, to);
       const token_pair = await this.tokenPairService.getTokenPairByPairAddress(body.pair_address);
-      console.log(token_pair);
       if (token_pair) {
 
         const price_chart_query = `
         {
             ethereum(network: bsc) {
-              dexTrades(options: {limit: 300, desc: "timeInterval.minute"}, exchangeName: {in: ["Pancake", "Pancake v2"]}, baseCurrency: {is: "${token_pair.token0_address}"}, quoteCurrency: {is: "${token_pair.token1_address}"}) {
+              dexTrades(options: {limit: 2000, desc: "timeInterval.minute"}, date: {since: "${from}", till: "${to}"}, exchangeName: {in: ["Pancake", "Pancake v2"]}, baseCurrency: {is: "${token_pair.token0_address}"}, quoteCurrency: {is: "${token_pair.token1_address}"}) {
                 timeInterval {
                   minute(count: 15)
                 }

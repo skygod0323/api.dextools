@@ -21,4 +21,15 @@ export const token_pairs = [
         token1_name: 'BUSD Token',
     },
 
+    //// Pancakeswap V2 MANA-BUSD
+    {
+        pair_address: '0x1d6EbDaf71108fa9676FeE4B005391C467F8F0f8',
+        token0_address: '0x7143370991baeab1ff7e69f40f15eb3504072012',
+        token0_symbol: 'MANA',
+        token0_name: 'Decentraland',
+        token1_address: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+        token1_symbol: 'BUSD',
+        token1_name: 'BUSD Token',
+    },
+
 ];
