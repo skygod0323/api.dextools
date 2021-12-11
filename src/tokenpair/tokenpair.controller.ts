@@ -124,7 +124,11 @@ export class TokenPairController {
       } else {
         return [];
       }
+  }
 
-      
+  @Post('search_bsc_token')
+  async searchBSCToken(@Body() body: any) {
+    const result = await this.tokenPairService.searchBSCToken(body.search);
+    return result;
   }
 }

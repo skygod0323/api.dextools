@@ -53,4 +53,20 @@ export class TokenPairService {
             where: {pair_address: pair_address}
         })
     }
+
+    async searchBSCToken(search): Promise<TokenPair[]> {
+      /// mana
+      // return this.tokenPairRepository.find({
+      //   where: {pair_address: '0x1d6EbDaf71108fa9676FeE4B005391C467F8F0f8'}
+      // })
+
+      console.log('search: ', search);
+      const query = this.tokenPairRepository.createQueryBuilder('token_pairs')
+      .where(`token_pairs.token0_symbol like '%${search}%'`).getSql()
+        console.log(query);
+
+      return this.tokenPairRepository.createQueryBuilder('token_pairs')
+        .where(`token_pairs.token0_symbol like '%${search}%'`)
+        .getMany();
+    }
 }

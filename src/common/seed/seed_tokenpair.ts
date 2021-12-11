@@ -4,7 +4,7 @@ export const token_pairs = [
         pair_address: '0x4B729D5d871057F3a9c424792729217CdE72410d',
         token0_address: '0xe91a8d2c584ca93c7405f15c22cdfe53c29896e3',
         token0_symbol: 'DEXT',
-        token0_name: 'TEXTools',
+        token0_name: 'DEXTools',
         token1_address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
         token1_symbol: 'WBNB',
         token1_name: 'Wrapped BNB',
