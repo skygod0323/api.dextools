@@ -48,7 +48,7 @@ const since = () => {
 
 
 @Controller('token_pair')
-@ApiTags('Api')
+@ApiTags('Token Pair')
 @ApiBearerAuth()
 export class TokenPairController {
   constructor(
@@ -63,20 +63,20 @@ export class TokenPairController {
 
   @Get('add')
   async addTokenPair(@Res() res) {
-    const param: CreateTokenPairDto = {
-      pair_address: '0x4B729D5d871057F3a9c424792729217CdE72410d',
-      token0_address: '0xe91a8d2c584ca93c7405f15c22cdfe53c29896e3',
-      token0_symbol: 'DEXT',
-      token0_name: 'TEXTools',
-      token1_address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-      token1_symbol: 'WBNB',
-      token1_name: 'Wrapped BNB',
-    };
+    // const param: CreateTokenPairDto = {
+    //   pair_address: '0x4B729D5d871057F3a9c424792729217CdE72410d',
+    //   token0_address: '0xe91a8d2c584ca93c7405f15c22cdfe53c29896e3',
+    //   token0_symbol: 'DEXT',
+    //   token0_name: 'TEXTools',
+    //   token1_address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+    //   token1_symbol: 'WBNB',
+    //   token1_name: 'Wrapped BNB',
+    // };
 
-    const tokenPair = await this.tokenPairService.addTokenPair(param, true);
-    console.log(tokenPair);
+    // const tokenPair = await this.tokenPairService.addTokenPair(param, true);
+    // console.log(tokenPair);
 
-    res.end(tokenPair.toTokenPairDto());
+    // res.end(tokenPair.toTokenPairDto());
   }
 
   @Get('get_token_pairs/:token_address')

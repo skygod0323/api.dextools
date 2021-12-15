@@ -8,6 +8,9 @@ export const token_pairs = [
         token1_address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
         token1_symbol: 'WBNB',
         token1_name: 'Wrapped BNB',
+        network: 'bsc',
+        pool: 'pcv2',
+        pair_index: -1
     },
 
     //// DEX Token
@@ -19,6 +22,9 @@ export const token_pairs = [
         token1_address: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
         token1_symbol: 'BUSD',
         token1_name: 'BUSD Token',
+        network: 'bsc',
+        pool: 'pcv2',
+        pair_index: -1
     },
 
     //// Pancakeswap V2 MANA-BUSD
@@ -30,6 +36,9 @@ export const token_pairs = [
         token1_address: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
         token1_symbol: 'BUSD',
         token1_name: 'BUSD Token',
+        network: 'bsc',
+        pool: 'pcv2',
+        pair_index: -1
     },
 
 ];

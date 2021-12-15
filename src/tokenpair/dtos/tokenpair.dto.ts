@@ -24,4 +24,13 @@ export class TokenPairDto {
 
   @ApiProperty()
   readonly token1_symbol: string;
+
+  @ApiProperty()
+  readonly network: string;
+
+  @ApiProperty()
+  readonly pool: string;
+
+  @ApiProperty()
+  readonly pair_index: number;
 }

@@ -26,6 +26,15 @@ export class TokenPair extends SoftDelete {
   @Column()
   token1_name: string;
 
+  @Column()
+  network: string;
+
+  @Column()
+  pool: string;
+
+  @Column()
+  pair_index: number
+
   toTokenPairDto(): TokenPairDto {
     return {
       id: this.id,
@@ -36,6 +45,9 @@ export class TokenPair extends SoftDelete {
       token1_address: this.token1_address,
       token1_symbol: this.token1_symbol,
       token1_name: this.token1_name,
+      network: this.token1_symbol,
+      pool: this.token1_name,
+      pair_index: this.pair_index
     };
   }
 }

@@ -28,7 +28,7 @@ async function bootstrap() {
     expressBasicAuth({
       challenge: true,
       users: {
-        telegram_bot: 'password',
+        dextools: 'password',
       },
     }),
   );

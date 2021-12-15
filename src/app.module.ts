@@ -11,6 +11,7 @@ import { join } from 'path';
 import { ServicesModule } from './services/services.module';
 import { TokenPairModule } from './tokenpair/tokenpair.module';
 import { SeedModule } from './common/seed/seed.module';
+import { CronjobModule } from './cronjob/cronjob.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { SeedModule } from './common/seed/seed.module';
     ScheduleModule.forRoot(),
     ServicesModule,
     TokenPairModule,
-    SeedModule
+    SeedModule,
+    CronjobModule
   ],
   controllers: [AppController],
   providers: [AppService, TasksService],

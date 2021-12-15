@@ -36,4 +36,18 @@ export class CreateTokenPairDto {
   @IsString()
   @IsNotEmpty()
   token1_symbol: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  network: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  pool: string;
+
+  @ApiProperty()
+  @IsString()
+  pair_index: number;
 }

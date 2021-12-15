@@ -6,6 +6,7 @@ import { TokenPair } from './entities/tokenpair.entity';
 
 import * as dotenv from 'dotenv';
 import { CreateTokenPairDto } from './dtos/create_tokenpair.dto';
+import { getFromDto } from 'src/common/utils/repository.util';
 
 dotenv.config();
 
@@ -31,14 +32,15 @@ export class TokenPairService {
         return found;
       }
     }
-    const pair = new TokenPair();
-    pair.pair_address = payload.pair_address;
-    pair.token0_address = payload.token0_address;
-    pair.token0_name = payload.token0_name;
-    pair.token0_symbol = payload.token0_symbol;
-    pair.token1_address = payload.token1_address;
-    pair.token1_name = payload.token1_name;
-    pair.token1_symbol = payload.token1_symbol;
+    // pair.pair_address = payload.pair_address;
+    // pair.token0_address = payload.token0_address;
+    // pair.token0_name = payload.token0_name;
+    // pair.token0_symbol = payload.token0_symbol;
+    // pair.token1_address = payload.token1_address;
+    // pair.token1_name = payload.token1_name;
+    // pair.token1_symbol = payload.token1_symbol;
+    // pair.pair_index = payload.pair_index;
+    const pair: TokenPair = getFromDto(payload, new TokenPair());    
     return this.tokenPairRepository.save(pair);
   }
 

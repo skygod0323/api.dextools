@@ -13,8 +13,8 @@ export class SeedService {
 
   async seedTokenPairs() {
     await Promise.all(
-      token_pairs.map(async (user) => {
-        await this.tokenpairService.addTokenPair(user, false);
+      token_pairs.map(async (pair) => {
+        await this.tokenpairService.addTokenPair(pair as any, false);
       }),
     );
   }
