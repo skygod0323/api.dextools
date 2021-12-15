@@ -37,26 +37,26 @@ export class CronjobService {
 
     @Timeout(0)
     async addPCV2TokenPairCronjob() {                   /// add cronjobs for pancakeswap v2
-        for (let i=0; i<10; i++) {
-            const pairCronjob = new PairsCronjob();
-            pairCronjob.network = 'bsc';
-            pairCronjob.pool = 'pcv2';
-            pairCronjob.from = i * 60000;
-            pairCronjob.to = (i + 1) * 60000 -1;
-            pairCronjob.active = true;
-            pairCronjob.current_index = i * 60000;    /// index that need to get pair now.
+        // for (let i=0; i<10; i++) {
+        //     const pairCronjob = new PairsCronjob();
+        //     pairCronjob.network = 'bsc';
+        //     pairCronjob.pool = 'pcv2';
+        //     pairCronjob.from = i * 60000;
+        //     pairCronjob.to = (i + 1) * 60000 -1;
+        //     pairCronjob.active = true;
+        //     pairCronjob.current_index = i * 60000;    /// index that need to get pair now.
 
-            await this.pairCronjobRepository.save(pairCronjob);
-        }
+        //     await this.pairCronjobRepository.save(pairCronjob);
+        // }
 
-        const pairCronjob = new PairsCronjob();
-        pairCronjob.network = 'bsc';
-        pairCronjob.pool = 'pcv2';
-        pairCronjob.from = 600000;
-        pairCronjob.to = 622700;
-        pairCronjob.active = true;
-        pairCronjob.current_index = 600000;    /// index that need to get pair now.
-        await this.pairCronjobRepository.save(pairCronjob);
+        // const pairCronjob = new PairsCronjob();
+        // pairCronjob.network = 'bsc';
+        // pairCronjob.pool = 'pcv2';
+        // pairCronjob.from = 600000;
+        // pairCronjob.to = 622700;
+        // pairCronjob.active = true;
+        // pairCronjob.current_index = 600000;    /// index that need to get pair now.
+        // await this.pairCronjobRepository.save(pairCronjob);
     }
 
     @Timeout(5000)
