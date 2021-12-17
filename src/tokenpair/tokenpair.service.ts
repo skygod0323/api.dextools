@@ -65,7 +65,6 @@ export class TokenPairService {
         .groupBy('token0_address, token0_symbol, token0_name')
         .getRawMany();
 
-        console.log('result = ', result);
       return result;
     }
 
