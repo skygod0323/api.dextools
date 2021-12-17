@@ -59,9 +59,11 @@ export class CronjobService {
         // await this.pairCronjobRepository.save(pairCronjob);
     }
 
-    @Timeout(5000)
+    @Timeout(1000)
     async runPCV2TokenPairsCron() {
-        this.logger.debug('Called timeout');
+        if (process.env.ENABLE_CRONJOB == '0') {
+            console.log('diabled cronjob'); return;
+        }
 
         const pairCronjobs = await this.pairCronjobRepository.find({
             where: {pool: 'pcv2', network: 'bsc', active: true},
@@ -74,7 +76,7 @@ export class CronjobService {
 
         Promise.all(jobs)
         .then((res) => {
-            console.log('result ', res);
+            // console.log('result ', res);
         }).catch(error => {
             console.log(error);
         })

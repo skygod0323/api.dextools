@@ -63,20 +63,7 @@ export class TokenPairController {
 
   @Get('add')
   async addTokenPair(@Res() res) {
-    // const param: CreateTokenPairDto = {
-    //   pair_address: '0x4B729D5d871057F3a9c424792729217CdE72410d',
-    //   token0_address: '0xe91a8d2c584ca93c7405f15c22cdfe53c29896e3',
-    //   token0_symbol: 'DEXT',
-    //   token0_name: 'TEXTools',
-    //   token1_address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-    //   token1_symbol: 'WBNB',
-    //   token1_name: 'Wrapped BNB',
-    // };
 
-    // const tokenPair = await this.tokenPairService.addTokenPair(param, true);
-    // console.log(tokenPair);
-
-    // res.end(tokenPair.toTokenPairDto());
   }
 
   @Get('get_token_pairs/:token_address')
@@ -102,9 +89,9 @@ export class TokenPairController {
         const price_chart_query = `
         {
             ethereum(network: bsc) {
-              dexTrades(options: {limit: 2000, desc: "timeInterval.minute"}, date: {since: "${from}", till: "${to}"}, exchangeName: {in: ["Pancake", "Pancake v2"]}, baseCurrency: {is: "${token_pair.token0_address}"}, quoteCurrency: {is: "${token_pair.token1_address}"}) {
+              dexTrades(options: {limit: 2000, desc: "timeInterval.minute"}, date: {till: "${to}"}, exchangeName: {in: ["Pancake", "Pancake v2"]}, baseCurrency: {is: "${token_pair.token0_address}"}, quoteCurrency: {is: "${token_pair.token1_address}"}) {
                 timeInterval {
-                  minute(count: 15)
+                  minute(count: 45)
                 }
                 baseAmount
                 quoteAmount
@@ -118,12 +105,31 @@ export class TokenPairController {
             }
           }
         `;
+
         const result = await this.bitqueryService.runQuery(price_chart_query);
-        return result.data.ethereum.dexTrades;
+        
+
+        
+        let trades = result.data.ethereum.dexTrades;
+
+        if (trades.length > 0) {
+          trades = trades.filter(trade => trade.maximum_price != trade.minimum_price);
+          if (trades.length == 0) trades = result.data.ethereum.dexTrades[result.data.ethereum.dexTrades.length - 1]
+          return trades;
+        } else {
+          return [];
+        }
+        
 
       } else {
         return [];
       }
+  }
+
+  @Post('get_lp_info')
+  async getLPInfo(@Body() body: any) {
+    const result = await this.tokenPairService.getLPInfo(body.pair_address);
+    return result;
   }
 
   @Post('search_bsc_token')
@@ -131,4 +137,6 @@ export class TokenPairController {
     const result = await this.tokenPairService.searchBSCToken(body.search);
     return result;
   }
+
+  
 }
