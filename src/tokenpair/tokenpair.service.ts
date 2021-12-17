@@ -58,11 +58,12 @@ export class TokenPairService {
     async searchBSCToken(search): Promise<TokenPair[]> {
 
       const result = await this.tokenPairRepository.createQueryBuilder('token_pairs')
+        .select("token0_address, token0_symbol, token0_name")
         .where(`token0_address like '%${search}%'`)
         .orWhere(`token0_symbol like '%${search}%'`)
         .orWhere(`token0_name like '%${search}%'`)
-        .groupBy('token0_address')
-        .getMany();
+        .groupBy('token0_address, token0_symbol, token0_name')
+        .getRawMany();
 
         console.log('result = ', result);
       return result;
